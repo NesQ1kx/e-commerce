@@ -1,0 +1,56 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <nav class="navigation content-wrapper">
+    <div class="nav-items">
+      <div class="main-nav">
+        <a routerLink="/" mat-button>E-discounter</a>
+        <a mat-button>Скидки</a>
+        <a mat-button>Промо-коды</a>
+        <a mat-button>Кэшбэк</a>
+        <a mat-button routerLink="/shops">Магазины</a>
+        <a *ngIf="auth.isAdmin$ | async" mat-button [matMenuTriggerFor]="menu">
+          <mat-icon aria-hidden="false">expand_more</mat-icon>
+          <span>Администратор</span>
+        </a>
+        <mat-menu #menu="matMenu" s>
+          <div style="display: flex; flex-direction: column">
+            <button mat-button (click)="addShop()">Добавить магазин</button>
+            <button mat-button (click)="addEvent()">Добавить акцию</button>
+          </div>
+        </mat-menu>
+      </div>
+      <div class="auth-nav">
+        <a
+          *ngIf="!(auth.accessToken$ | async)"
+          mat-button
+          class="with-icon"
+          routerLink="login"
+        >
+          <mat-icon aria-hidden="false">subdirectory_arrow_right</mat-icon>
+          <span>Вход</span>
+        </a>
+        <a
+          *ngIf="!(auth.accessToken$ | async)"
+          mat-button
+          routerLink="signup"
+          class="with-icon"
+        >
+          <mat-icon aria-hidden="false">person_add</mat-icon>
+          <span>Регистрация</span>
+        </a>
+        <a *ngIf="auth.accessToken$ | async" mat-button class="with-icon">
+          <mat-icon aria-hidden="false">person</mat-icon>
+          <span>Профиль</span>
+        </a>
+        <a
+          *ngIf="auth.accessToken$ | async"
+          mat-button
+          class="with-icon"
+          (click)="auth.logout()"
+        >
+          <mat-icon aria-hidden="false">cancel</mat-icon>
+          <span>Выход</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</mat-toolbar>

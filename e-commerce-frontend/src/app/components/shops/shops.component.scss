@@ -1,0 +1,15 @@
+.mat-toolbar.mat-primary {
+  justify-content: center;
+  font-weight: 400;
+}
+
+.shops-content {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 40px;
+
+  .mat-card-image {
+    height: 150px;
+  }
+}

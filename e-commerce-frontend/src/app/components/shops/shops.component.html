@@ -1,0 +1,22 @@
+<div>
+  <mat-toolbar class="subheader" color="primary">
+    <div class="content-wrapper">Магазины</div>
+  </mat-toolbar>
+  <div style="display: flex; justify-content: center">
+    <div class="content-wrapper">
+      <div class="shops-content">
+        <mat-card *ngFor="let shop of shops" class="shop-card">
+          <mat-card-header>
+            <mat-card-title>{{ shop.name }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image [src]="shop.image" alt="" />
+          <mat-card-actions>
+            <button mat-stroked-button color="accent">
+              Перейти к магазину
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

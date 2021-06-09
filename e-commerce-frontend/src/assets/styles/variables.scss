@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
+@use '~@angular/material/theming';
+
+// $color-config: mat-palette($mat-deep-purple);
+// $primary-color: map.get($color-config, "primary");
+
+$mat-warn: #f44336;
+$mat-accent: #69f0ae;
+$mat-primary: #9c27b0;

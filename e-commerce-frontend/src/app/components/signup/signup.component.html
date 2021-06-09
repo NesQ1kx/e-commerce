@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <mat-card class="signup-form">
+    <div class="header">Регистрация</div>
+    <mat-card-content>
+      <form class="content" [formGroup]="signupForm">
+        <mat-form-field>
+          <mat-label>Имя</mat-label>
+          <input matInput type="text" required formControlName="name" />
+          <mat-error *ngIf="signupForm.get('name')?.invalid">
+            {{ getErrorMessage("name") }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="text" required formControlName="email" />
+          <mat-error *ngIf="signupForm.get('email')?.invalid">
+            {{ getErrorMessage("email") }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Пароль</mat-label>
+          <input
+            matInput
+            [type]="isHidden ? 'password' : 'text'"
+            required
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="isHidden = !isHidden"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="isHidden"
+          >
+            <mat-icon>{{
+              isHidden ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.get('password')?.invalid">
+            {{ getErrorMessage("password") }}
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!signupForm.valid"
+        (click)="submitSignup()"
+      >
+        Регистрация
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

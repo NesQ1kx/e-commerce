@@ -1,0 +1,56 @@
+<h2>Добавить акцию</h2>
+<form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Тип акции</mat-label>
+    <mat-select required formControlName="type">
+      <mat-option *ngFor="let option of selectOptions" [value]="option.type">
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Магазин</mat-label>
+    <mat-select required formControlName="shop">
+      <mat-option *ngFor="let shop of shops" [value]="shop._id">
+        {{ shop.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ссылка</mat-label>
+    <input matInput type="input" required formControlName="link" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Описание</mat-label>
+    <textarea
+      matInput
+      type="input"
+      required
+      formControlName="description"
+    ></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Действует до:</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="expiresIn" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field *ngIf="selectedType === 'cashback'">
+    <mat-label>Размер кэшбэка</mat-label>
+    <input matInput type="input" required formControlName="cashbackAmount" />
+  </mat-form-field>
+  <mat-form-field *ngIf="selectedType === 'sale'">
+    <mat-label>Размер скидки</mat-label>
+    <input matInput type="input" required formControlName="saleAmount" />
+  </mat-form-field>
+  <mat-form-field *ngIf="selectedType === 'promoCode'">
+    <mat-label>Код</mat-label>
+    <input matInput type="input" required formControlName="code" />
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-button (click)="close()">Закрыть</button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid">
+      Добавить
+    </button>
+  </div>
+</form>
